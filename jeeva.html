@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEEVA // 17</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;cursor:default}
+
+/* ─── PAGE SYSTEM ─── */
+.page{display:none;min-height:100vh;width:100%}
+.page.active{display:block}
+
+/* ══════════════════════════════════════
+   PAGE 0 — HACKER ENTRY
+══════════════════════════════════════ */
+#page-hack{
+  background:#000;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  min-height:100vh;
+  font-family:'Share Tech Mono',monospace;
+  color:#00ff41;
+  position:relative;
+  overflow:hidden;
+}
+#page-hack.active{display:flex}
+.matrix-rain{position:absolute;inset:0;z-index:0;opacity:0.18}
+.hack-content{position:relative;z-index:2;text-align:center;padding:2rem}
+.hack-line{font-size:clamp(11px,2vw,15px);margin:3px 0;opacity:0;animation:hackIn 0.1s forwards}
+.hack-big{font-size:clamp(1.4rem,5vw,3rem);font-weight:700;color:#00ff41;text-shadow:0 0 20px #00ff41,0 0 40px #00ff41;letter-spacing:4px}
+.hack-red{color:#ff0040;text-shadow:0 0 15px #ff0040}
+.hack-white{color:#fff;text-shadow:0 0 10px #fff}
+.scan-line{position:absolute;top:0;left:0;width:100%;height:3px;background:rgba(0,255,65,0.5);animation:scan 2s linear infinite;z-index:3;box-shadow:0 0 10px #00ff41}
+@keyframes scan{0%{top:0}100%{top:100%}}
+@keyframes hackIn{to{opacity:1}}
+.cursor-blink{animation:blink 0.7s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.glitch{animation:glitch 0.3s infinite}
+@keyframes glitch{
+  0%,100%{transform:translate(0)}
+  20%{transform:translate(-3px,1px);filter:hue-rotate(90deg)}
+  40%{transform:translate(3px,-1px);filter:hue-rotate(-90deg)}
+  60%{transform:translate(-2px,2px)}
+  80%{transform:translate(2px,-2px)}
+}
+.progress-bar-hack{width:300px;height:4px;background:#001a00;border:1px solid #00ff41;margin:10px auto;border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#00ff41;width:0%;transition:width 0.05s;box-shadow:0 0 8px #00ff41}
+#access-text{font-size:clamp(1.2rem,4vw,2.5rem);color:#00ff41;text-shadow:0 0 30px #00ff41,0 0 60px #00ff41;letter-spacing:6px;margin-top:1rem;opacity:0}
+
+
+/* ══════════════════════════════════════
+   PAGE 1 — FLOWER BLOOM WELCOME
+══════════════════════════════════════ */
+#page-welcome{
+  background:linear-gradient(135deg,#0d0015 0%,#1a0033 40%,#2d0055 70%,#1a0033 100%);
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:2rem;
+  font-family:'Nunito',sans-serif;
+}
+#page-welcome.active{display:flex}
+.flower-field{position:absolute;inset:0;pointer-events:none;z-index:0}
+.flower{position:absolute;transform-origin:bottom center;animation:growFlower 2s ease-out forwards}
+@keyframes growFlower{
+  0%{transform:scaleY(0) rotate(var(--r));opacity:0}
+  60%{transform:scaleY(1.1) rotate(var(--r));opacity:1}
+  100%{transform:scaleY(1) rotate(var(--r));opacity:1}
+}
+.petal{position:absolute;border-radius:50% 50% 50% 0;transform-origin:bottom right;animation:bloomPetal 1.5s ease-out forwards}
+@keyframes bloomPetal{
+  0%{transform:rotate(var(--pa)) scale(0);opacity:0}
+  70%{transform:rotate(var(--pa)) scale(1.1);opacity:1}
+  100%{transform:rotate(var(--pa)) scale(1);opacity:1}
+}
+.star-particle{position:absolute;border-radius:50%;animation:twinkle var(--td) ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:0.2;transform:scale(0.8)}100%{opacity:1;transform:scale(1.2)}}
+
+.welcome-inner{position:relative;z-index:5}
+.welcome-tag{display:inline-block;border:1px solid rgba(255,180,255,0.4);background:rgba(255,100,255,0.1);color:#ffb4ff;font-size:12px;letter-spacing:3px;text-transform:uppercase;padding:6px 18px;border-radius:999px;margin-bottom:1.5rem;backdrop-filter:blur(10px)}
+.welcome-name{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,10vw,7rem);font-weight:700;color:#fff;line-height:1;letter-spacing:-2px;text-shadow:0 0 40px rgba(200,100,255,0.8);margin-bottom:0.3rem}
+.welcome-name span{color:#ff80ff;font-style:italic}
+.welcome-age{font-size:clamp(5rem,20vw,12rem);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(255,180,255,0.6);line-height:1;text-shadow:none;letter-spacing:-8px;position:relative}
+.welcome-age::after{content:attr(data-text);position:absolute;inset:0;color:#ff60ff;opacity:0.2;filter:blur(20px)}
+.welcome-sub{font-size:clamp(1rem,3vw,1.4rem);color:rgba(255,200,255,0.7);margin-top:1rem;font-weight:300;letter-spacing:2px}
+.welcome-date{font-size:13px;color:rgba(255,180,255,0.5);margin-top:0.5rem;letter-spacing:4px;text-transform:uppercase}
+
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,180,255,0.5);font-size:13px;letter-spacing:2px;text-transform:uppercase;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.nav-btn{background:rgba(255,100,255,0.15);border:1px solid rgba(255,180,255,0.3);color:#ffb4ff;padding:12px 32px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:999px;cursor:pointer;transition:all 0.3s;margin-top:2rem;backdrop-filter:blur(10px)}
+.nav-btn:hover{background:rgba(255,100,255,0.3);border-color:rgba(255,180,255,0.7);transform:scale(1.05)}
+
+
+/* ══════════════════════════════════════
+   PAGE 2 — LIFE BOARD / POLAROID VIBES
+══════════════════════════════════════ */
+#page-life{
+  background:#f5f0e8;
+  min-height:100vh;
+  font-family:'Nunito',sans-serif;
+  position:relative;
+  overflow:hidden;
+}
+#page-life.active{display:block}
+.cork-board{background:#c8a96e;background-image:
+  radial-gradient(circle at 20% 30%,rgba(255,255,255,0.05) 0%,transparent 40%),
+  radial-gradient(circle at 80% 70%,rgba(0,0,0,0.08) 0%,transparent 40%);
+  min-height:100vh;padding:3rem 2rem 5rem;position:relative}
+.cork-texture{position:absolute;inset:0;background-image:
+  repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px),
+  repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);
+  pointer-events:none}
+.board-title{text-align:center;font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:#3d2800;margin-bottom:3rem;position:relative;z-index:2}
+.board-title span{color:#8b4513;font-style:italic}
+
+.polaroids-wrap{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;position:relative;z-index:2;max-width:1100px;margin:0 auto}
+.polaroid{background:#fff;padding:1.2rem 1.2rem 3rem;box-shadow:4px 6px 20px rgba(0,0,0,0.3);transform:rotate(var(--pr));transition:transform 0.3s;cursor:default;width:200px;position:relative;flex-shrink:0}
+.polaroid:hover{transform:rotate(0deg) scale(1.05);z-index:10;box-shadow:8px 12px 30px rgba(0,0,0,0.4)}
+.polaroid-inner{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--pb);border-radius:2px;overflow:hidden}
+.polaroid-caption{text-align:center;margin-top:0.8rem;font-size:13px;font-weight:700;color:#3d2800;font-family:'Nunito',sans-serif;letter-spacing:0.5px}
+.push-pin{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:16px;height:16px;background:radial-gradient(circle at 40% 40%,#ff6b6b,#c0392b);border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.4)}
+
+.sticky-note{background:var(--sn-bg);padding:1.2rem;box-shadow:3px 4px 15px rgba(0,0,0,0.2);transform:rotate(var(--snr));width:180px;position:relative;z-index:2;font-family:'Nunito',sans-serif}
+.sticky-note p{font-size:13px;color:#333;line-height:1.5;font-weight:400}
+.sticky-note .sn-title{font-weight:900;font-size:14px;color:#222;margin-bottom:6px}
+
+.tape{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:50px;height:18px;background:rgba(200,180,100,0.5);border-left:1px solid rgba(150,130,80,0.3);border-right:1px solid rgba(150,130,80,0.3)}
+
+.washi-strip{height:24px;position:absolute;left:0;right:0;top:0;opacity:0.6}
+
+.life-nav{text-align:center;margin-top:3rem;position:relative;z-index:3}
+.life-nav-btn{background:#8b4513;border:none;color:#fff8ef;padding:14px 36px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:4px;cursor:pointer;transition:all 0.3s;box-shadow:3px 3px 0 #5a2d0c}
+.life-nav-btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #5a2d0c}
+
+
+/* ══════════════════════════════════════
+   PAGE 3 — CYBER / ACHIEVEMENT UNLOCKED
+══════════════════════════════════════ */
+#page-cyber{
+  background:#080812;
+  min-height:100vh;
+  font-family:'Orbitron',sans-serif;
+  position:relative;
+  overflow:hidden;
+}
+#page-cyber.active{display:block}
+.cyber-grid-bg{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(0,200,255,0.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,200,255,0.04) 1px,transparent 1px);
+  background-size:50px 50px}
+.cyber-glow-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+
+.cyber-content{position:relative;z-index:2;padding:4rem 2rem;max-width:1000px;margin:0 auto;text-align:center}
+.cyber-badge{display:inline-block;border:1px solid #00c8ff;color:#00c8ff;font-size:10px;letter-spacing:4px;padding:6px 16px;margin-bottom:2rem;text-transform:uppercase;position:relative;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%)}
+.cyber-badge::before{content:'';position:absolute;inset:0;background:rgba(0,200,255,0.05)}
+.cyber-title{font-size:clamp(2rem,8vw,5rem);font-weight:900;letter-spacing:-2px;color:#fff;text-shadow:0 0 40px rgba(0,200,255,0.5);margin-bottom:0.5rem;line-height:1}
+.cyber-title .accent{color:#00c8ff}
+.cyber-sub{font-size:clamp(0.8rem,2vw,1.1rem);color:rgba(0,200,255,0.6);letter-spacing:3px;margin-bottom:3rem}
+
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;text-align:left;margin-bottom:3rem}
+.ach-card{background:rgba(0,200,255,0.04);border:1px solid rgba(0,200,255,0.2);padding:1.5rem;position:relative;clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,15px 100%,0 calc(100% - 15px));transition:all 0.3s}
+.ach-card:hover{background:rgba(0,200,255,0.1);border-color:rgba(0,200,255,0.5);box-shadow:0 0 30px rgba(0,200,255,0.2)}
+.ach-card.gold{border-color:rgba(255,200,0,0.4);background:rgba(255,200,0,0.04)}
+.ach-card.gold:hover{background:rgba(255,200,0,0.1);box-shadow:0 0 30px rgba(255,200,0,0.2)}
+.ach-icon{font-size:2rem;margin-bottom:0.8rem}
+.ach-title{font-size:13px;font-weight:700;color:#00c8ff;letter-spacing:2px;margin-bottom:6px}
+.ach-card.gold .ach-title{color:#ffc800}
+.ach-desc{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px;line-height:1.6;font-family:'Share Tech Mono',monospace}
+.ach-xp{position:absolute;top:12px;right:16px;font-size:10px;color:rgba(0,200,255,0.5);letter-spacing:2px}
+.ach-card.gold .ach-xp{color:rgba(255,200,0,0.6)}
+
+.level-bar-wrap{margin:2rem auto;max-width:500px;text-align:left}
+.level-label{font-size:11px;color:rgba(0,200,255,0.7);letter-spacing:3px;margin-bottom:8px;display:flex;justify-content:space-between}
+.level-bar{height:8px;background:rgba(0,200,255,0.1);border:1px solid rgba(0,200,255,0.3);border-radius:0;overflow:hidden}
+.level-fill{height:100%;background:linear-gradient(90deg,#00c8ff,#ff00c8);width:0%;animation:fillBar 2s ease-out 1s forwards;box-shadow:0 0 10px rgba(0,200,255,0.5)}
+@keyframes fillBar{to{width:85%}}
+
+.cyber-nav{text-align:center;margin-top:2rem}
+.cyber-nav-btn{background:transparent;border:1px solid #00c8ff;color:#00c8ff;padding:14px 40px;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%)}
+.cyber-nav-btn:hover{background:rgba(0,200,255,0.15);box-shadow:0 0 30px rgba(0,200,255,0.3);transform:scale(1.05)}
+
+
+/* ══════════════════════════════════════
+   PAGE 4 — CAKE & CELEBRATION
+══════════════════════════════════════ */
+#page-cake{
+  background:linear-gradient(160deg,#1a0530 0%,#0d1a3a 50%,#1a0530 100%);
+  min-height:100vh;
+  font-family:'Nunito',sans-serif;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+#page-cake.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+.cake-stars{position:absolute;inset:0;pointer-events:none}
+.cake-star{position:absolute;background:#fff;border-radius:50%;animation:cakeTwinkle var(--ct) ease-in-out infinite alternate}
+@keyframes cakeTwinkle{0%{opacity:0.1;transform:scale(0.5)}100%{opacity:0.9;transform:scale(1.5)}}
+
+.cake-content{position:relative;z-index:3;padding:3rem 2rem;width:100%;max-width:700px;margin:0 auto}
+.cake-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,180,255,0.6);margin-bottom:1rem}
+.cake-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,7vw,4.5rem);font-weight:700;color:#fff;margin-bottom:2rem;line-height:1.1}
+.cake-title span{color:#ff80ff}
+
+/* SVG Cake */
+.cake-svg-wrap{margin:0 auto 2rem;width:min(320px,80vw);position:relative}
+.candle-flame{animation:flickerFlame 0.3s ease-in-out infinite alternate;transform-origin:bottom center}
+@keyframes flickerFlame{0%{transform:scaleX(1) scaleY(1) rotate(-3deg)}100%{transform:scaleX(0.9) scaleY(1.1) rotate(3deg)}}
+
+.sparkle-burst{position:absolute;pointer-events:none}
+.sp-dot{position:absolute;border-radius:50%;animation:sparkleOut var(--st) ease-out var(--sd) forwards;opacity:0}
+@keyframes sparkleOut{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}}
+
+.cut-btn{background:linear-gradient(135deg,#ff4da6,#ff80ff);border:none;color:#fff;padding:16px 48px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;letter-spacing:2px;border-radius:999px;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 30px rgba(255,77,166,0.4);margin-bottom:1.5rem;text-transform:uppercase}
+.cut-btn:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 12px 40px rgba(255,77,166,0.6)}
+.cut-btn:active{transform:scale(0.96)}
+
+.fireworks-canvas{position:fixed;inset:0;pointer-events:none;z-index:100}
+
+.confetti-piece{position:fixed;pointer-events:none;z-index:101;border-radius:2px;animation:confettiFall var(--cf) linear var(--cd) forwards;opacity:0}
+@keyframes confettiFall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
+
+.message-reveal{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,180,255,0.2);border-radius:20px;padding:2rem;margin:1.5rem 0;display:none}
+.message-reveal.show{display:block;animation:fadeUp 0.8s ease-out}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.msg-text{font-size:1.1rem;color:rgba(255,255,255,0.9);line-height:1.8;font-weight:300}
+.msg-sign{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:#ff80ff;margin-top:1rem}
+
+.cake-nav{margin-top:2rem}
+.cake-nav-btn{background:rgba(255,180,255,0.1);border:1px solid rgba(255,180,255,0.4);color:#ffb4ff;padding:12px 32px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:999px;cursor:pointer;transition:all 0.3s}
+.cake-nav-btn:hover{background:rgba(255,100,255,0.2);transform:scale(1.05)}
+
+
+/* ══════════════════════════════════════
+   PAGE 5 — FINAL / WISHES
+══════════════════════════════════════ */
+#page-final{
+  background:#000;
+  min-height:100vh;
+  font-family:'Nunito',sans-serif;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+#page-final.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+.nebula-bg{position:absolute;inset:0}
+.nebula{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+
+.final-content{position:relative;z-index:5;padding:3rem 2rem;max-width:800px;margin:0 auto}
+.final-year{font-family:'Orbitron',sans-serif;font-size:clamp(5rem,20vw,12rem);font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.15);line-height:1;letter-spacing:-8px;position:relative}
+.final-year::after{content:'17';position:absolute;inset:0;background:linear-gradient(135deg,#ff80ff,#00c8ff,#ff4da6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 3s ease infinite;filter:blur(0px)}
+@keyframes gradShift{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(60deg)}}
+
+.final-tagline{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,4vw,2.5rem);color:#fff;font-style:italic;margin-bottom:0.5rem;opacity:0.9}
+.final-name{font-family:'Orbitron',sans-serif;font-size:clamp(1rem,4vw,2rem);font-weight:700;letter-spacing:4px;color:transparent;background:linear-gradient(90deg,#ff80ff,#00c8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2rem}
+
+.wishes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0;text-align:left}
+.wish-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.2rem;transition:all 0.3s}
+.wish-item:hover{background:rgba(255,255,255,0.08);transform:translateY(-4px)}
+.wish-emoji{font-size:1.8rem;margin-bottom:8px}
+.wish-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.wish-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5;font-weight:300}
+
+.final-big-msg{font-size:clamp(2rem,8vw,5rem);font-weight:900;color:#fff;line-height:1;margin:2rem 0 1rem;text-shadow:0 0 60px rgba(255,128,255,0.4)}
+.final-big-msg .pink{color:#ff80ff}
+.final-sign{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:rgba(255,255,255,0.5)}
+
+.restart-btn{background:transparent;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.6);padding:10px 28px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:999px;cursor:pointer;transition:all 0.3s;margin-top:2rem}
+.restart-btn:hover{border-color:rgba(255,128,255,0.6);color:#ff80ff;transform:scale(1.05)}
+
+/* Flower bloom overlay (pages 1+4+5) */
+.bloom-petals-overlay{position:absolute;inset:0;pointer-events:none;z-index:1}
+
+/* Shooting stars for final page */
+.shooting-star{position:absolute;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);border-radius:999px;animation:shoot var(--ss) linear var(--sd) infinite;opacity:0}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0)}10%{opacity:1}100%{opacity:0;transform:translate(var(--sx),var(--sy))}}
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 0: HACKER ═══ -->
+<div id="page-hack" class="page active">
+  <canvas class="matrix-rain" id="matrixCanvas"></canvas>
+  <div class="scan-line"></div>
+  <div class="hack-content" id="hackContent"></div>
+</div>
+
+<!-- ═══ PAGE 1: WELCOME / FLOWER BLOOM ═══ -->
+<div id="page-welcome" class="page">
+  <div class="flower-field" id="flowerField"></div>
+  <div class="bloom-petals-overlay" id="bloomOverlay1"></div>
+  <div class="welcome-inner">
+    <div class="welcome-tag">9 March · Bloom Day</div>
+    <div class="welcome-name">Jeeva <span>Premraaj</span> Singh</div>
+    <div class="welcome-age" data-text="17">17</div>
+    <div class="welcome-sub">A new chapter has bloomed</div>
+    <div class="welcome-date">9 · III · 2025</div>
+    <button class="nav-btn" onclick="goTo('page-life')">Explore Your Life →</button>
+  </div>
+  <div class="scroll-hint">↓ scroll the journey</div>
+</div>
+
+<!-- ═══ PAGE 2: LIFE BOARD ═══ -->
+<div id="page-life" class="page">
+  <div class="cork-board">
+    <div class="cork-texture"></div>
+    <div class="board-title">Your <span>Story Board</span></div>
+    <div class="polaroids-wrap" id="lifeBoard"></div>
+    <div class="life-nav">
+      <button class="life-nav-btn" onclick="goTo('page-cyber')">Level Up → Achievements</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 3: CYBER / ACHIEVEMENTS ═══ -->
+<div id="page-cyber" class="page">
+  <div class="cyber-grid-bg"></div>
+  <div class="cyber-glow-orb" style="width:400px;height:400px;background:rgba(0,200,255,0.06);top:-100px;right:-100px"></div>
+  <div class="cyber-glow-orb" style="width:300px;height:300px;background:rgba(255,0,200,0.06);bottom:-50px;left:-50px"></div>
+
+  <div class="cyber-content">
+    <div class="cyber-badge">// Achievement Log · Player: Jeeva //</div>
+    <div class="cyber-title">Level <span class="accent">17</span></div>
+    <div class="cyber-sub">UNLOCKED · 09.03.2025 · 00:00:00</div>
+
+    <div class="level-bar-wrap">
+      <div class="level-label"><span>XP Progress</span><span>85%</span></div>
+      <div class="level-bar"><div class="level-fill"></div></div>
+    </div>
+
+    <div class="achievements-grid" id="achGrid"></div>
+
+    <div class="cyber-nav">
+      <button class="cyber-nav-btn" onclick="goTo('page-cake')">→ Cake Section</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 4: CAKE ═══ -->
+<div id="page-cake" class="page">
+  <div class="cake-stars" id="cakeStars"></div>
+  <canvas class="fireworks-canvas" id="fwCanvas"></canvas>
+
+  <div class="cake-content">
+    <div class="cake-label">// Sweet 17 //</div>
+    <div class="cake-title">Make a <span>Wish</span></div>
+
+    <div class="cake-svg-wrap" id="cakeSvgWrap">
+      <!-- Cake SVG -->
+      <svg viewBox="0 0 320 300" width="100%" xmlns="http://www.w3.org/2000/svg" id="cakeSvg">
+        <defs>
+          <radialGradient id="cg1" cx="50%" cy="30%"><stop offset="0%" stop-color="#ff80ff"/><stop offset="100%" stop-color="#cc44cc"/></radialGradient>
+          <radialGradient id="cg2" cx="50%" cy="30%"><stop offset="0%" stop-color="#ff99ff"/><stop offset="100%" stop-color="#dd66dd"/></radialGradient>
+          <radialGradient id="cg3" cx="50%" cy="30%"><stop offset="0%" stop-color="#ffbbff"/><stop offset="100%" stop-color="#ee88ee"/></radialGradient>
+          <linearGradient id="plateG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0d0ff"/><stop offset="100%" stop-color="#c0a0ee"/></linearGradient>
+          <radialGradient id="flameG" cx="50%" cy="80%"><stop offset="0%" stop-color="#fff"/><stop offset="30%" stop-color="#ffe080"/><stop offset="70%" stop-color="#ff8000"/><stop offset="100%" stop-color="#ff4000" stop-opacity="0"/></radialGradient>
+        </defs>
+        <!-- Plate -->
+        <ellipse cx="160" cy="272" rx="100" ry="14" fill="url(#plateG)" opacity="0.8"/>
+        <!-- Bottom tier -->
+        <rect x="60" y="220" width="200" height="45" rx="6" fill="url(#cg1)"/>
+        <ellipse cx="160" cy="220" rx="100" ry="10" fill="#ff99ff"/>
+        <ellipse cx="160" cy="265" rx="100" ry="10" fill="#cc44cc"/>
+        <!-- Frosting drips bottom -->
+        <path d="M70,220 Q80,210 90,220 Q100,208 110,220 Q120,210 130,220 Q140,208 150,220 Q160,210 170,220 Q180,208 190,220 Q200,210 210,220 Q220,208 230,220 Q240,210 250,220" fill="none" stroke="#fff" stroke-width="3" opacity="0.6"/>
+        <!-- Decoration dots bottom tier -->
+        <circle cx="90" cy="242" r="4" fill="#fff" opacity="0.6"/>
+        <circle cx="115" cy="238" r="3" fill="#ffee88" opacity="0.7"/>
+        <circle cx="140" cy="244" r="4" fill="#fff" opacity="0.6"/>
+        <circle cx="180" cy="240" r="3" fill="#ffee88" opacity="0.7"/>
+        <circle cx="210" cy="244" r="4" fill="#fff" opacity="0.6"/>
+        <circle cx="235" cy="238" r="3" fill="#88ffee" opacity="0.7"/>
+
+        <!-- Middle tier -->
+        <rect x="85" y="165" width="150" height="55" rx="5" fill="url(#cg2)"/>
+        <ellipse cx="160" cy="165" rx="75" ry="9" fill="#ffbbff"/>
+        <ellipse cx="160" cy="220" rx="75" ry="9" fill="#dd66dd"/>
+        <!-- Frosting drips middle -->
+        <path d="M90,165 Q100,155 110,165 Q120,153 130,165 Q140,155 150,165 Q160,153 170,165 Q180,155 190,165 Q200,153 210,165 Q220,155 230,165" fill="none" stroke="#fff" stroke-width="2.5" opacity="0.6"/>
+        <!-- Stars on middle tier -->
+        <text x="110" y="196" font-size="14" text-anchor="middle" fill="#fff" opacity="0.8">★</text>
+        <text x="160" y="200" font-size="14" text-anchor="middle" fill="#ffee88" opacity="0.9">★</text>
+        <text x="210" y="196" font-size="14" text-anchor="middle" fill="#fff" opacity="0.8">★</text>
+        <!-- "17" text on middle -->
+        <text x="160" y="200" font-size="22" text-anchor="middle" fill="#fff" font-weight="900" opacity="0.95" font-family="Orbitron,monospace">17</text>
+
+        <!-- Top tier -->
+        <rect x="110" y="120" width="100" height="45" rx="5" fill="url(#cg3)"/>
+        <ellipse cx="160" cy="120" rx="50" ry="8" fill="#ffd0ff"/>
+        <ellipse cx="160" cy="165" rx="50" ry="8" fill="#ee88ee"/>
+        <!-- Frosting drips top -->
+        <path d="M115,120 Q125,110 135,120 Q145,108 155,120 Q165,110 175,120 Q185,108 195,120 Q205,110 205,120" fill="none" stroke="#fff" stroke-width="2" opacity="0.7"/>
+        <!-- Sprinkles top -->
+        <line x1="125" y1="140" x2="132" y2="145" stroke="#ff8" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="145" y1="132" x2="152" y2="137" stroke="#8ff" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="170" y1="138" x2="177" y2="133" stroke="#f8f" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="190" y1="142" x2="197" y2="147" stroke="#ff8" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Candle 1 -->
+        <rect x="140" y="90" width="10" height="32" rx="4" fill="#ff4da6"/>
+        <rect x="141" y="92" width="3" height="28" rx="2" fill="rgba(255,255,255,0.25)"/>
+        <g class="candle-flame">
+          <ellipse cx="145" cy="88" rx="7" ry="11" fill="url(#flameG)" opacity="0.95"/>
+          <ellipse cx="145" cy="90" rx="3.5" ry="5.5" fill="#fff" opacity="0.7"/>
+        </g>
+        <!-- Candle 2 -->
+        <rect x="158" y="86" width="10" height="36" rx="4" fill="#00c8ff"/>
+        <rect x="159" y="88" width="3" height="32" rx="2" fill="rgba(255,255,255,0.25)"/>
+        <g class="candle-flame">
+          <ellipse cx="163" cy="83" rx="7" ry="12" fill="url(#flameG)" opacity="0.95"/>
+          <ellipse cx="163" cy="85" rx="3.5" ry="6" fill="#fff" opacity="0.7"/>
+        </g>
+        <!-- Candle 3 -->
+        <rect x="176" y="90" width="10" height="32" rx="4" fill="#ff80ff"/>
+        <rect x="177" y="92" width="3" height="28" rx="2" fill="rgba(255,255,255,0.25)"/>
+        <g class="candle-flame">
+          <ellipse cx="181" cy="88" rx="7" ry="11" fill="url(#flameG)" opacity="0.95"/>
+          <ellipse cx="181" cy="90" rx="3.5" ry="5.5" fill="#fff" opacity="0.7"/>
+        </g>
+
+        <!-- Glow under cake -->
+        <ellipse cx="160" cy="275" rx="85" ry="8" fill="rgba(255,100,255,0.15)"/>
+      </svg>
+    </div>
+
+    <button class="cut-btn" id="cutBtn" onclick="cutTheCake()">🔪 Cut the Cake!</button>
+
+    <div class="message-reveal" id="msgReveal">
+      <div class="msg-text">
+        "Jeeva, 17 is not just a number. It's the age where dreams start getting serious,
+        where your choices start shaping your future, and where the world starts noticing you.
+        You've grown into someone genuinely brilliant — keep going, keep grinding,
+        and never stop being exactly who you are."
+      </div>
+      <div class="msg-sign">— With love & pride, always 💜</div>
+    </div>
+
+    <div class="cake-nav">
+      <button class="cake-nav-btn" onclick="goTo('page-final')">→ Final Surprise</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 5: FINAL ═══ -->
+<div id="page-final" class="page">
+  <div class="nebula-bg" id="nebulaBg"></div>
+  <div id="finalStars"></div>
+
+  <div class="final-content">
+    <div class="final-year">17</div>
+    <div class="final-tagline">You only turn 17 once.</div>
+    <div class="final-name">JEEVA PREMRAAJ SINGH</div>
+
+    <div class="wishes-grid">
+      <div class="wish-item">
+        <div class="wish-emoji">🚀</div>
+        <div class="wish-title">Chase big dreams</div>
+        <div class="wish-desc">You've got the energy, the smarts, and the time. Use all three.</div>
+      </div>
+      <div class="wish-item">
+        <div class="wish-emoji">💻</div>
+        <div class="wish-title">Build things</div>
+        <div class="wish-desc">Whatever you love — build it. Code it. Create it. Make it real.</div>
+      </div>
+      <div class="wish-item">
+        <div class="wish-emoji">🔥</div>
+        <div class="wish-title">Stay hungry</div>
+        <div class="wish-desc">Complacency is the enemy. Keep wanting more, keep learning more.</div>
+      </div>
+      <div class="wish-item">
+        <div class="wish-emoji">👑</div>
+        <div class="wish-title">Own your path</div>
+        <div class="wish-desc">Don't follow the crowd unless the crowd is going somewhere amazing.</div>
+      </div>
+      <div class="wish-item">
+        <div class="wish-emoji">🌍</div>
+        <div class="wish-title">Stay curious</div>
+        <div class="wish-desc">The best things you'll learn this year haven't been taught yet.</div>
+      </div>
+      <div class="wish-item">
+        <div class="wish-emoji">❤️</div>
+        <div class="wish-title">Love your people</div>
+        <div class="wish-desc">Fame and success matter, but your circle matters more. Keep them close.</div>
+      </div>
+    </div>
+
+    <div class="final-big-msg">Happy <span class="pink">Birthday</span>,<br>Jeeva.</div>
+    <div class="final-sign">From your sibling, with everything</div>
+
+    <button class="restart-btn" onclick="goTo('page-hack');startHack()">↺ Play Again</button>
+  </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────
+   MATRIX RAIN
+───────────────────────────────────── */
+const mc = document.getElementById('matrixCanvas');
+const mctx = mc.getContext('2d');
+mc.width = window.innerWidth; mc.height = window.innerHeight;
+const cols = Math.floor(mc.width / 14);
+const drops = Array(cols).fill(1);
+const chars = 'アイウエオカキクケコサシスセソタチツテト0123456789ABCDEF><{}[]01';
+function drawMatrix() {
+  mctx.fillStyle = 'rgba(0,0,0,0.05)';
+  mctx.fillRect(0, 0, mc.width, mc.height);
+  mctx.fillStyle = '#00ff41';
+  mctx.font = '13px Share Tech Mono';
+  drops.forEach((y, i) => {
+    const ch = chars[Math.floor(Math.random() * chars.length)];
+    mctx.fillText(ch, i * 14, y * 14);
+    if (y * 14 > mc.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  });
+}
+let matrixInt = setInterval(drawMatrix, 33);
+
+/* ─────────────────────────────────────
+   HACKER SEQUENCE
+───────────────────────────────────── */
+function startHack() {
+  const hc = document.getElementById('hackContent');
+  hc.innerHTML = '';
+  let step = 0;
+  const lines = [
+    {txt: '> SYSTEM BREACH DETECTED...', cls: 'hack-line hack-red', delay: 0},
+    {txt: '> INTRUSION PROTOCOL ACTIVATED', cls: 'hack-line hack-red', delay: 200},
+    {txt: '> SCANNING TARGET: LIFE_SYSTEM_v16.9...', cls: 'hack-line', delay: 500},
+    {txt: '> [████████████████████] 100%', cls: 'hack-line', delay: 900, prog: true},
+    {txt: '> FIREWALL BYPASSED ✓', cls: 'hack-line', delay: 1500},
+    {txt: '> ACCESSING CORE FILES...', cls: 'hack-line', delay: 1800},
+    {txt: '  NAME:    JEEVA PREMRAAJ SINGH', cls: 'hack-line hack-white', delay: 2100},
+    {txt: '  AGE:     17 YEARS', cls: 'hack-line hack-white', delay: 2300},
+    {txt: '  DATE:    09 · 03 · 2025', cls: 'hack-line hack-white', delay: 2500},
+    {txt: '  STATUS:  LEGENDARY', cls: 'hack-line hack-white', delay: 2700},
+    {txt: '> UPGRADING LIFE_SYSTEM v16.9 → v17.0...', cls: 'hack-line', delay: 3100},
+    {txt: '> [████████████████████] COMPLETE', cls: 'hack-line', delay: 3600},
+    {txt: '> YOU HAVE BEEN HACKED... BY TIME ⚡', cls: 'hack-line hack-red glitch', delay: 4000},
+    {txt: '> NEW PHASE INITIATED', cls: 'hack-line', delay: 4500},
+    {txt: '', cls: 'hack-line', delay: 5000},
+    {txt: '██████████████████████████████', cls: 'hack-line', delay: 5100},
+    {txt: '  WELCOME, JEEVA PREMRAAJ SINGH  ', cls: 'hack-line hack-big', delay: 5300},
+    {txt: '  ⟨⟨ ENTERING NEW PHASE ⟩⟩  ', cls: 'hack-line', delay: 5600},
+    {txt: '██████████████████████████████', cls: 'hack-line', delay: 5700},
+  ];
+
+  lines.forEach(l => {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = l.cls;
+      el.textContent = l.txt;
+      hc.appendChild(el);
+      hc.scrollTop = hc.scrollHeight;
+    }, l.delay);
+  });
+
+  // Progress bar after lines
+  setTimeout(() => {
+    const pb = document.createElement('div');
+    pb.className = 'progress-bar-hack';
+    const pf = document.createElement('div');
+    pf.className = 'progress-fill';
+    pb.appendChild(pf);
+    hc.appendChild(pb);
+    let w = 0;
+    const pi = setInterval(() => { w += 2; pf.style.width = w + '%'; if (w >= 100) clearInterval(pi); }, 30);
+  }, 1200);
+
+  // Access granted text
+  setTimeout(() => {
+    const ag = document.createElement('div');
+    ag.id = 'access-text';
+    ag.className = 'hack-big';
+    ag.style.cssText = 'margin-top:1.5rem;opacity:0;animation:hackIn 0.5s 0.1s forwards;color:#00ff41;font-size:clamp(1rem,4vw,2rem)';
+    ag.textContent = '[ ACCESS GRANTED — HAPPY 17th BIRTHDAY ]';
+    hc.appendChild(ag);
+  }, 5800);
+
+  // Transition to welcome page
+  setTimeout(() => {
+    clearInterval(matrixInt);
+    goTo('page-welcome');
+    initFlowers();
+    initCakeStars();
+    initFinalPage();
+  }, 7500);
+}
+startHack();
+
+/* ─────────────────────────────────────
+   PAGE NAVIGATION
+───────────────────────────────────── */
+function goTo(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'page-life') buildLifeBoard();
+  if (id === 'page-cyber') buildAchievements();
+}
+
+/* ─────────────────────────────────────
+   FLOWER BLOOM
+───────────────────────────────────── */
+function initFlowers() {
+  const ff = document.getElementById('flowerField');
+  ff.innerHTML = '';
+  const colors = [
+    ['#ff80ff','#cc44cc'],['#ff4da6','#cc2277'],['#ff99cc','#dd66aa'],
+    ['#ffb3de','#ee77bb'],['#cc88ff','#9944cc'],['#ff66aa','#dd3388'],
+    ['#ffaaff','#ee66ee'],['#ff55bb','#cc2299']
+  ];
+  for (let i = 0; i < 40; i++) {
+    const [c1, c2] = colors[Math.floor(Math.random() * colors.length)];
+    const x = Math.random() * 100;
+    const size = 20 + Math.random() * 40;
+    const delay = Math.random() * 3;
+    const rot = (Math.random() - 0.5) * 30;
+    const y = 60 + Math.random() * 40;
+
+    const flower = document.createElement('div');
+    flower.style.cssText = `position:absolute;left:${x}%;bottom:${100-y}%;--r:${rot}deg;animation:growFlower ${1+Math.random()}s ease-out ${delay}s both;width:${size}px;height:${size*1.5}px`;
+
+    // Stem
+    const stem = document.createElement('div');
+    stem.style.cssText = `position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:3px;height:${size*0.8}px;background:linear-gradient(to top,#2d7a2d,#4daa4d);border-radius:2px`;
+    flower.appendChild(stem);
+
+    // Petals
+    const petalCount = 6;
+    const head = document.createElement('div');
+    head.style.cssText = `position:absolute;bottom:${size*0.7}px;left:50%;transform:translateX(-50%);width:${size}px;height:${size}px`;
+    for (let p = 0; p < petalCount; p++) {
+      const petal = document.createElement('div');
+      const angle = (p / petalCount) * 360;
+      const pd = Math.random() * 0.5;
+      petal.style.cssText = `position:absolute;width:${size*0.45}px;height:${size*0.65}px;border-radius:50% 50% 50% 0;transform-origin:bottom right;--pa:${angle}deg;transform:rotate(${angle}deg);background:linear-gradient(135deg,${c1},${c2});left:50%;top:50%;animation:bloomPetal ${0.8+Math.random()*0.5}s ease-out ${delay+pd}s both`;
+      head.appendChild(petal);
+    }
+    // Center
+    const center = document.createElement('div');
+    center.style.cssText = `position:absolute;width:${size*0.3}px;height:${size*0.3}px;border-radius:50%;background:radial-gradient(circle,#ffe066,#ffaa00);left:50%;top:50%;transform:translate(-50%,-50%);z-index:2`;
+    head.appendChild(center);
+    flower.appendChild(head);
+    ff.appendChild(flower);
+  }
+
+  // Stars
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    const size = 1 + Math.random() * 3;
+    s.style.cssText = `position:absolute;left:${Math.random()*100}%;top:${Math.random()*60}%;width:${size}px;height:${size}px;border-radius:50%;background:#fff;--td:${1+Math.random()*3}s;animation:twinkle var(--td) ease-in-out infinite alternate;opacity:0.6`;
+    ff.appendChild(s);
+  }
+}
+
+/* ─────────────────────────────────────
+   LIFE BOARD (Page 2)
+───────────────────────────────────── */
+function buildLifeBoard() {
+  const board = document.getElementById('lifeBoard');
+  if (board.children.length > 0) return;
+
+  const cards = [
+    {emoji:'🚀',bg:'#ffd6e7',caption:'Born to be Legendary',rot:-3},
+    {emoji:'🎮',bg:'#d6e8ff',caption:'Gamer Mode: ON',rot:2},
+    {emoji:'📚',bg:'#d6ffd8',caption:'Knowledge Seeker',rot:-1.5},
+    {emoji:'🎵',bg:'#ffe4d6',caption:'Vibes All Day',rot:3},
+    {emoji:'💡',bg:'#fff3d6',caption:'Big Brain Energy',rot:-2},
+    {emoji:'🏆',bg:'#e8d6ff',caption:'Born Winner',rot:1.5},
+    {emoji:'🌟',bg:'#d6fff4',caption:'Shining Bright',rot:-2.5},
+    {emoji:'💻',bg:'#ffd6f4',caption:'Future Builder',rot:2.5},
+  ];
+
+  const stickies = [
+    {text:'Turning 17 means you\'re 1 year closer to everything you\'ve dreamed of!',title:'Note to self:',bg:'#fef3b0',rot:-2},
+    {text:'Every year you get smarter, stronger, and more yourself. Keep going.',title:'Remember:',bg:'#b8f0d0',rot:1.5},
+    {text:'From 0 to 17 — that\'s 6205 days of just being amazing.',title:'Fun fact:',bg:'#ffd6e7',rot:-1},
+  ];
+
+  cards.forEach(c => {
+    const pol = document.createElement('div');
+    pol.className = 'polaroid';
+    pol.style.setProperty('--pr', c.rot + 'deg');
+    pol.style.setProperty('--pb', c.bg);
+    pol.innerHTML = `
+      <div class="push-pin"></div>
+      <div class="polaroid-inner" style="background:${c.bg};font-size:3.5rem">${c.emoji}</div>
+      <div class="polaroid-caption">${c.caption}</div>
+    `;
+    board.appendChild(pol);
+  });
+
+  stickies.forEach(s => {
+    const sn = document.createElement('div');
+    sn.className = 'sticky-note';
+    sn.style.cssText = `--sn-bg:${s.bg};--snr:${s.rot}deg;background:${s.bg};transform:rotate(${s.rot}deg)`;
+    sn.innerHTML = `<div class="tape"></div><div class="sn-title">${s.title}</div><p>${s.text}</p>`;
+    board.appendChild(sn);
+  });
+}
+
+/* ─────────────────────────────────────
+   ACHIEVEMENTS (Page 3)
+───────────────────────────────────── */
+function buildAchievements() {
+  const grid = document.getElementById('achGrid');
+  if (grid.children.length > 0) return;
+  const achs = [
+    {icon:'🔥',title:'17 YEARS SURVIVED',desc:'Completed 6,205 days without quitting. Respect.',xp:'+17,000 XP',gold:true},
+    {icon:'🧠',title:'BIG BRAIN ACTIVATED',desc:'Neural pathways upgraded. Processing speed: MAXIMUM.',xp:'+5,000 XP'},
+    {icon:'🎯',title:'GOAL SETTER',desc:'Defined targets, locked sights. Execution pending.',xp:'+3,500 XP'},
+    {icon:'🛡️',title:'RESILIENCE MAXED',desc:'Took every hit and kept moving. Defense stat: 100.',xp:'+4,200 XP'},
+    {icon:'⚡',title:'FAST LEARNER',desc:'Absorbed knowledge at superhuman rate. Still hungry.',xp:'+6,000 XP'},
+    {icon:'👥',title:'SQUAD BUILT',desc:'Crew assembled. Loyalty stat: unbreakable.',xp:'+2,800 XP'},
+    {icon:'🌐',title:'WORLD AWAITING',desc:'18 incoming. The real game is about to begin.',xp:'+∞ XP',gold:true},
+    {icon:'💎',title:'RARE CHARACTER',desc:'Custom build. No two players like you exist.',xp:'+9,999 XP',gold:true},
+  ];
+  achs.forEach(a => {
+    const card = document.createElement('div');
+    card.className = 'ach-card' + (a.gold ? ' gold' : '');
+    card.innerHTML = `<div class="ach-xp">${a.xp}</div><div class="ach-icon">${a.icon}</div><div class="ach-title">${a.title}</div><div class="ach-desc">${a.desc}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ─────────────────────────────────────
+   CAKE STARS
+───────────────────────────────────── */
+function initCakeStars() {
+  const cs = document.getElementById('cakeStars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    const size = 1 + Math.random() * 3;
+    s.style.cssText = `position:absolute;left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;border-radius:50%;background:#fff;--ct:${1+Math.random()*3}s;animation:cakeTwinkle var(--ct) ease-in-out infinite alternate`;
+    cs.appendChild(s);
+  }
+}
+
+/* ─────────────────────────────────────
+   CAKE CUTTING + FIREWORKS
+───────────────────────────────────── */
+let cakeCut = false;
+function cutTheCake() {
+  if (cakeCut) return;
+  cakeCut = true;
+  document.getElementById('cutBtn').textContent = '🎉 HAPPY BIRTHDAY JEEVA!';
+  document.getElementById('cutBtn').style.background = 'linear-gradient(135deg,#00c8ff,#ff80ff)';
+  document.getElementById('msgReveal').classList.add('show');
+
+  // Fireworks
+  const canvas = document.getElementById('fwCanvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  const fwParticles = [];
+
+  class FWParticle {
+    constructor(x, y, col) {
+      this.x = x; this.y = y; this.col = col;
+      this.vx = (Math.random()-0.5)*8;
+      this.vy = (Math.random()-0.5)*8 - 4;
+      this.life = 1;
+      this.decay = 0.015 + Math.random()*0.015;
+      this.r = 2 + Math.random()*3;
+      this.trail = [];
+    }
+    update() {
+      this.trail.push({x:this.x,y:this.y});
+      if (this.trail.length > 6) this.trail.shift();
+      this.x += this.vx; this.y += this.vy;
+      this.vy += 0.12; this.life -= this.decay;
+    }
+    draw() {
+      ctx.save();
+      this.trail.forEach((t,i) => {
+        ctx.globalAlpha = (this.life * i/this.trail.length) * 0.4;
+        ctx.fillStyle = this.col;
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, this.r*0.5, 0, Math.PI*2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = this.life;
+      ctx.fillStyle = this.col;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  const fwColors = ['#ff80ff','#00c8ff','#ff4da6','#ffee55','#55ffee','#fff','#ff6655'];
+  function burst(x, y) {
+    const col = fwColors[Math.floor(Math.random()*fwColors.length)];
+    for (let i = 0; i < 50; i++) fwParticles.push(new FWParticle(x, y, col));
+  }
+
+  function fwLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    fwParticles.forEach(p => { p.update(); p.draw(); });
+    for (let i = fwParticles.length-1; i >= 0; i--) { if (fwParticles[i].life <= 0) fwParticles.splice(i,1); }
+    requestAnimationFrame(fwLoop);
+  }
+  fwLoop();
+
+  // Burst sequence
+  const positions = [[0.3,0.3],[0.7,0.3],[0.5,0.2],[0.2,0.5],[0.8,0.5],[0.4,0.4],[0.6,0.35],[0.5,0.5]];
+  positions.forEach(([fx,fy],i) => {
+    setTimeout(() => burst(canvas.width*fx, canvas.height*fy), i*400);
+  });
+  setInterval(() => burst(Math.random()*canvas.width, Math.random()*canvas.height*0.6), 1200);
+
+  // Confetti
+  const cColors = ['#ff80ff','#00c8ff','#ffee55','#ff4da6','#55ffee','#fff','#ff6655','#bbff55'];
+  for (let i = 0; i < 100; i++) {
+    const conf = document.createElement('div');
+    const col = cColors[Math.floor(Math.random()*cColors.length)];
+    const size = 6 + Math.random()*10;
+    conf.style.cssText = `position:fixed;left:${Math.random()*100}%;top:-20px;width:${size}px;height:${size*0.6}px;background:${col};z-index:102;border-radius:2px;--cf:${2+Math.random()*3}s;--cd:${Math.random()*2}s;animation:confettiFall var(--cf) linear var(--cd) forwards;opacity:0`;
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 6000);
+  }
+}
+
+/* ─────────────────────────────────────
+   FINAL PAGE - NEBULA + SHOOTING STARS
+───────────────────────────────────── */
+function initFinalPage() {
+  const nb = document.getElementById('nebulaBg');
+  const nebulaDefs = [
+    {w:600,h:400,x:'-10%',y:'10%',c:'rgba(255,80,255,0.06)'},
+    {w:500,h:500,x:'50%',y:'40%',c:'rgba(0,200,255,0.06)'},
+    {w:400,h:300,x:'20%',y:'60%',c:'rgba(255,50,150,0.05)'},
+  ];
+  nebulaDefs.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'nebula';
+    el.style.cssText = `width:${n.w}px;height:${n.h}px;left:${n.x};top:${n.y};background:${n.c};filter:blur(80px)`;
+    nb.appendChild(el);
+  });
+
+  const fs = document.getElementById('finalStars');
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElement('div');
+    const size = 1 + Math.random()*2;
+    s.style.cssText = `position:fixed;left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;border-radius:50%;background:#fff;opacity:${0.2+Math.random()*0.5};animation:cakeTwinkle ${1+Math.random()*3}s ease-in-out infinite alternate`;
+    fs.appendChild(s);
+  }
+
+  // Shooting stars
+  for (let i = 0; i < 8; i++) {
+    const ss = document.createElement('div');
+    const len = 80 + Math.random()*120;
+    ss.style.cssText = `position:fixed;top:${Math.random()*50}%;left:${Math.random()*70}%;width:${len}px;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);border-radius:999px;--ss:${3+Math.random()*5}s;--sd:${Math.random()*5}s;--sx:${200+Math.random()*300}px;--sy:${100+Math.random()*200}px;animation:shoot var(--ss) linear var(--sd) infinite;opacity:0`;
+    fs.appendChild(ss);
+  }
+}
+</script>
+</body>
+</html>
